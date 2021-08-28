@@ -10,5 +10,12 @@ module.exports = (sequelize, DataType) => {
     { timestamps: false }
   );
 
+  Alunos.associate = models => {
+    Alunos.hasMany(models.Atendimento, {
+      as: "Atendimentos",
+      foreignKey: "aluno_id"
+    })
+  }
+
   return Alunos;
 };

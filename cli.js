@@ -36,6 +36,18 @@ const run = async () => {
   })
   alunosDesc = alunosDesc.map(aluno => aluno.dataValues);
   console.log(alunosDesc);
+  line();
+
+  console.log("Tabela de atendimentos:");
+  // await db.Atendimento.create({ descricao: "Teste 1", aluno_id: 9})
+  let atendimentos = await db.Atendimento.findAll({
+    include: ["Alunos"]
+  })
+  atendimentos = atendimentos.map(valor => valor.dataValues);
+  console.log(atendimentos);
+  console.log();
+  console.log(atendimentos[0].Alunos.dataValues);
+  console.log(JSON.stringify(atendimentos, null, 2));
 };
 
 run();
