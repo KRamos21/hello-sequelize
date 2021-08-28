@@ -15,8 +15,24 @@
     <button type="submit">Enviar cadastro do aluno</button>
   </form>
 
-  <pre>
-    <%=JSON.stringify(alunos, null, 2)  %> 
-  </pre>
+  <hr>
+
+  <h1>Alunos</h1>
+
+  <div>
+    <% alunos.forEach(aluno => { %>
+      <form action="/alunos/atualizar/<%= aluno.id %>" method="post">
+        Nome: <input type="text" name="nome" value="<%= aluno.nome %>"><br>
+        Sobrenome: <input type="text" name="sobrenome" value="<%= aluno.sobrenome %>"><br>
+        E-mail: <input type="email" name="email" value="<%= aluno.email %>"><br>
+        Ano de Matrícula: <input type="number" name="ano_matricula" value="<%= aluno.ano_matricula %>"><br>
+        <a href="/alunos/matricular/<%= aluno.id %>">Matricular no ano corrente</a>
+        <a href="/alunos/deletar/<%= aluno.id %>">Deletar</a>
+        <input type="submit" value="Atualizar dados">
+        <hr><br>  
+      </form>
+    <% }) %>  
+  </div>
+
 </body>
 </html>
